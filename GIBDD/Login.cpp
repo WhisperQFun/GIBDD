@@ -19,6 +19,7 @@ System::Void GIBDD::Login::enter_bttn_Click(System::Object ^ sender, System::Eve
 	MainForm^ f1 = gcnew MainForm(0);
 	this->Visible = false;
 	f1->Show();
+	
 	/*
 	SQLiteDataReader ^reader1;
 	if (Login_txb->Text != ""&&password_txb->Text != "")

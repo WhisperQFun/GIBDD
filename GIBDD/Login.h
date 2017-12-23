@@ -8,6 +8,7 @@ namespace GIBDD {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	
 
 	/// <summary>
 	/// Сводка для Login
@@ -15,11 +16,12 @@ namespace GIBDD {
 	public ref class Login : public System::Windows::Forms::Form
 	{
 	public:
+		Thread ^ UpdateThread;
 		Login(void)
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			
 			//
 		}
 
@@ -41,7 +43,7 @@ namespace GIBDD {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  password_txb;
 	private: System::Windows::Forms::Button^  enter_bttn;
-
+	
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.

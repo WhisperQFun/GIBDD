@@ -1,8 +1,15 @@
 #include "MainForm.h"
 #include "Data_conteiner.h"
 #include "Database.h"
+#include "ManipulateForm.h"
 
-System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::EventArgs ^ e)
+using namespace System;
+using namespace GIBDD;
+
+
+
+
+DataTable^ load()
 {
 	using namespace System::Collections::Generic;
 	List<Data_gibdd^>^ Data1 = gcnew List<Data_gibdd^>;
@@ -24,11 +31,11 @@ System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::Eve
 	DB->Create_Table_DB(DB_name_2, Colums_Name_2);
 	DB->Create_Table_DB(DB_name_3, Colums_Name_3);
 	SQLiteDataReader ^reader = DB->Select_Table_DB(Selected_Values, Table_name);
-	SQLiteDataReader ^reader2 = DB->Select_Table_DB(Selected_Values, Colums_Name_2);
-	SQLiteDataReader ^reader3 = DB->Select_Table_DB(Selected_Values, Colums_Name_3);
+	SQLiteDataReader ^reader2 = DB->Select_Table_DB(Selected_Values, DB_name_2);
+	SQLiteDataReader ^reader3 = DB->Select_Table_DB(Selected_Values, DB_name_3);
 
 	DataTable^ Table = gcnew DataTable();
-	dataGridView1->DataSource = Table;
+	
 
 	/*-for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
 	{
@@ -44,8 +51,8 @@ System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::Eve
 	Table->Columns->Add("Номер паспорта");
 	Table->Columns->Add("Дата");
 	Table->Columns->Add("В розыске ?");
-	array<String^>^ strarray = gcnew array<String^>(reader->FieldCount);
-	while (reader->Read()&&reader3->Read())
+	array<String^>^ strarray = gcnew array<String^>(reader->FieldCount+reader3->FieldCount-1);
+	while (reader->Read() && reader3->Read())
 	{
 		try {
 			Data1->Insert(i, gcnew Data_gibdd());
@@ -78,9 +85,9 @@ System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::Eve
 			strarray[2] = Data1[colCtr]->model;
 			strarray[3] = Data1[colCtr]->vin;
 			strarray[4] = Data1[colCtr]->owners_id;
-			strarray[5] = Data3[i]->owner;
-			strarray[6] = Data3[i]->passport_series;
-			strarray[7] = Data3[i]->passport_number;
+			strarray[5] = Data3[colCtr]->owner;
+			strarray[6] = Data3[colCtr]->passport_series;
+			strarray[7] = Data3[colCtr]->passport_number;
 			strarray[8] = Data1[colCtr]->date;
 			strarray[9] = Data1[colCtr]->insearch;
 			Table->Rows->Add(strarray);
@@ -96,10 +103,26 @@ System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::Eve
 	reader3->Close();
 	reader->Close();
 	DB->Close();
+	return Table;
 
+
+}
+
+
+System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::EventArgs ^ e)
+{
+	dataGridView1->DataSource = load();
+	
 }
 
 System::Void GIBDD::MainForm::MainForm_FormClosing(System::Object ^ sender, System::Windows::Forms::FormClosingEventArgs ^ e)
 {
 	Application::Exit();
+}
+
+System::Void GIBDD::MainForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	ManipulateForm^ mp = gcnew ManipulateForm();
+	mp->ShowDialog();
+	dataGridView1->DataSource = load();
 }

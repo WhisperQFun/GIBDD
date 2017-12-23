@@ -25,7 +25,7 @@ namespace GIBDD
 		{
 			try
 			{						
-				db->ConnectionString = "Data Source=TRUCKING.db";
+				db->ConnectionString = "Data Source=GIBDD.db";
 				db->Open();
 			}
 			catch (Exception ^e)
