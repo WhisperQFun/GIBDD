@@ -3,6 +3,7 @@
 #include "Database.h"
 #include "ManipulateForm.h"
 
+
 using namespace System;
 using namespace GIBDD;
 
@@ -111,6 +112,7 @@ DataTable^ load()
 
 System::Void GIBDD::MainForm::MainForm_Load(System::Object ^ sender, System::EventArgs ^ e)
 {
+	this->Text = "С подключением "+user_id;
 	dataGridView1->DataSource = load();
 	
 }
@@ -123,6 +125,13 @@ System::Void GIBDD::MainForm::MainForm_FormClosing(System::Object ^ sender, Syst
 System::Void GIBDD::MainForm::button1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	ManipulateForm^ mp = gcnew ManipulateForm();
+	mp->ShowDialog();
+	dataGridView1->DataSource = load();
+}
+
+System::Void GIBDD::MainForm::red_btn_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	ManipulateForm^ mp = gcnew ManipulateForm(true, this->dataGridView1->SelectedCells[0]->RowIndex + 1);
 	mp->ShowDialog();
 	dataGridView1->DataSource = load();
 }

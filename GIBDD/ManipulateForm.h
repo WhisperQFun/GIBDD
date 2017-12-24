@@ -15,11 +15,27 @@ namespace GIBDD {
 	public ref class ManipulateForm : public System::Windows::Forms::Form
 	{
 	public:
+		static bool is_update;
+	private: System::Windows::Forms::Label^  gibdd_db_id;
+	private: System::Windows::Forms::Label^  owner_db_id;
+	public:
+
+	public:
+
+			 static int selected_row;
 		ManipulateForm(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: добавьте код конструктора
+			//
+		}
+		ManipulateForm(bool is_upd, int select_row)
+		{
+			InitializeComponent();
+			//
+			this->is_update = is_upd;
+			this->selected_row = select_row;
 			//
 		}
 
@@ -79,6 +95,8 @@ namespace GIBDD {
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->add_bttn = (gcnew System::Windows::Forms::Button());
 			this->edit_bttn = (gcnew System::Windows::Forms::Button());
+			this->gibdd_db_id = (gcnew System::Windows::Forms::Label());
+			this->owner_db_id = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -217,12 +235,33 @@ namespace GIBDD {
 			this->edit_bttn->TabIndex = 14;
 			this->edit_bttn->Text = L"Изменить";
 			this->edit_bttn->UseVisualStyleBackColor = true;
+			this->edit_bttn->Click += gcnew System::EventHandler(this, &ManipulateForm::edit_bttn_Click);
+			// 
+			// gibdd_db_id
+			// 
+			this->gibdd_db_id->AutoSize = true;
+			this->gibdd_db_id->Location = System::Drawing::Point(331, 146);
+			this->gibdd_db_id->Name = L"gibdd_db_id";
+			this->gibdd_db_id->Size = System::Drawing::Size(0, 13);
+			this->gibdd_db_id->TabIndex = 15;
+			this->gibdd_db_id->Visible = false;
+			// 
+			// owner_db_id
+			// 
+			this->owner_db_id->AutoSize = true;
+			this->owner_db_id->Location = System::Drawing::Point(331, 177);
+			this->owner_db_id->Name = L"owner_db_id";
+			this->owner_db_id->Size = System::Drawing::Size(0, 13);
+			this->owner_db_id->TabIndex = 16;
+			this->owner_db_id->Visible = false;
 			// 
 			// ManipulateForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(515, 479);
+			this->Controls->Add(this->owner_db_id);
+			this->Controls->Add(this->gibdd_db_id);
 			this->Controls->Add(this->edit_bttn);
 			this->Controls->Add(this->add_bttn);
 			this->Controls->Add(this->checkBox1);
@@ -240,11 +279,14 @@ namespace GIBDD {
 			this->Controls->Add(this->label1);
 			this->Name = L"ManipulateForm";
 			this->Text = L"ManipulateForm";
+			this->Load += gcnew System::EventHandler(this, &ManipulateForm::ManipulateForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void add_bttn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void edit_bttn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void ManipulateForm_Load(System::Object^  sender, System::EventArgs^  e);
 };
 }

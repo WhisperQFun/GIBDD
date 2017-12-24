@@ -1,6 +1,7 @@
 #include "Login.h"
 #include "Database.h"
 #include "MainForm.h"
+#include "RegForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -15,12 +16,7 @@ void main(array<String^>^ arg) {
 }
 
 System::Void GIBDD::Login::enter_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
-{
-	MainForm^ f1 = gcnew MainForm(0);
-	this->Visible = false;
-	f1->Show();
-	
-	/*
+{	
 	SQLiteDataReader ^reader1;
 	if (Login_txb->Text != ""&&password_txb->Text != "")
 	{
@@ -34,7 +30,8 @@ System::Void GIBDD::Login::enter_bttn_Click(System::Object ^ sender, System::Eve
 		{
 			if ((reader1->GetValue(1)->ToString() == password_txb->Text) && (reader1->GetValue(2)->ToString() == Login_txb->Text))
 			{
-				MainForm^ f1 = gcnew MainForm(Convert::ToInt32(reader1->GetValue(0)->ToString()));
+				MainForm^ f1 = gcnew MainForm(reader1->GetValue(2)->ToString());
+				MessageBox::Show("Успешно");
 				this->Visible = false;
 				f1->Show();
 				i = 1;
@@ -51,5 +48,12 @@ System::Void GIBDD::Login::enter_bttn_Click(System::Object ^ sender, System::Eve
 	else
 	{
 		MessageBox::Show("Не все поля Заполнены");
-	}*/
+	}
+
+}
+
+System::Void GIBDD::Login::reg_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	RegForm^ rg = gcnew RegForm();
+	rg->ShowDialog();
 }

@@ -17,8 +17,8 @@ namespace GIBDD {
 	{
 	public:
 		
-		int user_id;
-		MainForm(int usr_id)
+		String ^ user_id;
+		MainForm(String^ usr_id)
 		{
 			this->user_id = usr_id;
 			InitializeComponent();
@@ -40,8 +40,10 @@ namespace GIBDD {
 		}
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Button^  red_btn;
+
+
+
 	
 	protected:
 
@@ -58,10 +60,10 @@ namespace GIBDD {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->red_btn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -80,51 +82,43 @@ namespace GIBDD {
 			// 
 			this->button1->Location = System::Drawing::Point(12, 335);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(240, 23);
+			this->button1->Size = System::Drawing::Size(225, 23);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Добавить запись";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
-			// label1
+			// red_btn
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 440);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(93, 13);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"Текущее время :";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(111, 440);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L"label2";
+			this->red_btn->Location = System::Drawing::Point(243, 335);
+			this->red_btn->Name = L"red_btn";
+			this->red_btn->Size = System::Drawing::Size(239, 23);
+			this->red_btn->TabIndex = 2;
+			this->red_btn->Text = L"Редактировать запись";
+			this->red_btn->UseVisualStyleBackColor = true;
+			this->red_btn->Click += gcnew System::EventHandler(this, &MainForm::red_btn_Click);
 			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(673, 479);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->red_btn);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::MainForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void MainForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
-	};
+	private: System::Void red_btn_Click(System::Object^  sender, System::EventArgs^  e);
+};
 }
