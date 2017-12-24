@@ -34,13 +34,28 @@ System::Void GIBDD::ManipulateForm::add_bttn_Click(System::Object ^ sender, Syst
 	DB->Insert_Table_DB(Inserted_Values, DB_name);
 
 	DB->Close();
-	MessageBox::Show("Sucess!!!!");
+	MessageBox::Show("Успешно");
 	this->Close();
 }
 
 System::Void GIBDD::ManipulateForm::edit_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+	Database ^DB = gcnew Database();
+	DB->Open_DB();
+	if (checkBox1->Checked == true)
+	{
+		i = 1;
+	}
+	else
+	{
+		i = 0;
+	}
+	DB->Update_Table_DB("GIBDD", "type='" + textBox1->Text + "'," + "model='" + textBox2->Text + "'," + "vin='" + textBox3->Text + "'," + "owners_id='" + owner_db_id->Text + "'," + "date='" + DateTime::Now.ToString() + "'," + "insearch='" + i, "' WHERE id =" + gibdd_db_id->Text);
+	DB->Update_Table_DB("OWNERS", "owner='" + textBox4->Text + "'," + "passport_series='" + textBox5->Text + "'," + "passport_number='" + textBox6->Text, "' WHERE owners_id =" + owner_db_id->Text);
+	DB->Close();
 
+	MessageBox::Show("Успешно");
+	this->Close();
 }
 
 System::Void GIBDD::ManipulateForm::ManipulateForm_Load(System::Object ^ sender, System::EventArgs ^ e)

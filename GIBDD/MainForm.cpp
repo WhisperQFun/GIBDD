@@ -102,6 +102,7 @@ DataTable^ load()
 
 
 	reader3->Close();
+	reader2->Close();
 	reader->Close();
 	DB->Close();
 	return Table;
