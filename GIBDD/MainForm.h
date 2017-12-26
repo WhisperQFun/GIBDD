@@ -16,16 +16,22 @@ namespace GIBDD {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
-		
+		String ^ is_adm;
+	private: System::Windows::Forms::Label^  label1;
+	public:
 		String ^ user_id;
-		MainForm(String^ usr_id)
+		MainForm(String^ usr_id, String^ is_admin1)
 		{
+			this->is_adm = is_admin1;
 			this->user_id = usr_id;
 			InitializeComponent();
 			//
-			
+
 			//
 		}
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Button^  search_bttn_1;
+		
 	
 	protected:
 		/// <summary>
@@ -66,6 +72,9 @@ namespace GIBDD {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->red_btn = (gcnew System::Windows::Forms::Button());
 			this->delete_bttn = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->search_bttn_1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -110,11 +119,42 @@ namespace GIBDD {
 			this->delete_bttn->UseVisualStyleBackColor = true;
 			this->delete_bttn->Click += gcnew System::EventHandler(this, &MainForm::delete_bttn_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(509, 12);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(96, 20);
+			this->label1->TabIndex = 4;
+			this->label1->Text = L"Поиск по №";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(513, 35);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(92, 20);
+			this->textBox1->TabIndex = 5;
+			// 
+			// search_bttn_1
+			// 
+			this->search_bttn_1->Location = System::Drawing::Point(513, 61);
+			this->search_bttn_1->Name = L"search_bttn_1";
+			this->search_bttn_1->Size = System::Drawing::Size(92, 23);
+			this->search_bttn_1->TabIndex = 6;
+			this->search_bttn_1->Text = L"Поиск";
+			this->search_bttn_1->UseVisualStyleBackColor = true;
+			this->search_bttn_1->Click += gcnew System::EventHandler(this, &MainForm::search_bttn_1_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(673, 479);
+			this->ClientSize = System::Drawing::Size(766, 393);
+			this->Controls->Add(this->search_bttn_1);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->delete_bttn);
 			this->Controls->Add(this->red_btn);
 			this->Controls->Add(this->button1);
@@ -126,6 +166,7 @@ namespace GIBDD {
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -134,5 +175,6 @@ namespace GIBDD {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void red_btn_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void delete_bttn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void search_bttn_1_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

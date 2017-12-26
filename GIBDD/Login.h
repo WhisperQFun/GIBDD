@@ -112,6 +112,7 @@ namespace GIBDD {
 			// 
 			this->password_txb->Location = System::Drawing::Point(62, 127);
 			this->password_txb->Name = L"password_txb";
+			this->password_txb->PasswordChar = '*';
 			this->password_txb->Size = System::Drawing::Size(100, 20);
 			this->password_txb->TabIndex = 4;
 			// 

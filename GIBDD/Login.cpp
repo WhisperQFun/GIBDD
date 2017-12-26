@@ -30,7 +30,7 @@ System::Void GIBDD::Login::enter_bttn_Click(System::Object ^ sender, System::Eve
 		{
 			if ((reader1->GetValue(1)->ToString() == password_txb->Text) && (reader1->GetValue(2)->ToString() == Login_txb->Text))
 			{
-				MainForm^ f1 = gcnew MainForm(reader1->GetValue(2)->ToString());
+				MainForm^ f1 = gcnew MainForm(reader1->GetValue(2)->ToString(), reader1->GetValue(3)->ToString());
 				MessageBox::Show("Успешно");
 				this->Visible = false;
 				f1->Show();
