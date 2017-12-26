@@ -150,6 +150,7 @@ namespace GIBDD {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Login";
 			this->Text = L"¬ход";
+			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -157,5 +158,6 @@ namespace GIBDD {
 #pragma endregion
 	private: System::Void enter_bttn_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void reg_bttn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void Login_Load(System::Object^  sender, System::EventArgs^  e);
 };
 }

@@ -17,20 +17,14 @@ DataTable^ load()
 	List<Data_users^>^ Data2 = gcnew List<Data_users^>;
 	List<Data_owners^>^ Data3 = gcnew List<Data_owners^>;
 
-	String^ Table_Colums_Name = "id INTEGER PRIMARY KEY, type STRING, model STRING, vin STRING, owners_id INTEGER, date STRING, insearch BOOLEAN";
 	String^ Table_name = "GIBDD";
-	String^ Colums_Name_2 = "users_id INTEGER PRIMARY KEY, password STRING, login STRING, is_admin BOOLEAN";
 	String^ DB_name_2 = "USERS";
 	String^ DB_name_3 = "OWNERS";
-	String^ Colums_Name_3 = "owners_id INTEGER PRIMARY KEY, owner STRING, passport_series STRING, passport_number STRING";
 	String^ Selected_Values = "*";
 
 	int i = 0;
 	Database ^DB = gcnew Database();
 	DB->Open_DB();
-	DB->Create_Table_DB(Table_name, Table_Colums_Name);
-	DB->Create_Table_DB(DB_name_2, Colums_Name_2);
-	DB->Create_Table_DB(DB_name_3, Colums_Name_3);
 	SQLiteDataReader ^reader = DB->Select_Table_DB(Selected_Values, Table_name);
 	SQLiteDataReader ^reader2 = DB->Select_Table_DB(Selected_Values, DB_name_2);
 	SQLiteDataReader ^reader3 = DB->Select_Table_DB(Selected_Values, DB_name_3);
@@ -135,4 +129,15 @@ System::Void GIBDD::MainForm::red_btn_Click(System::Object ^ sender, System::Eve
 	ManipulateForm^ mp = gcnew ManipulateForm(true, this->dataGridView1->SelectedCells[0]->RowIndex + 1);
 	mp->ShowDialog();
 	dataGridView1->DataSource = load();
+}
+
+System::Void GIBDD::MainForm::delete_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	String^ DB_name = "GIBDD";
+	String^ DB_name_3 = "OWNERS";
+	Database ^DB = gcnew Database();
+	DB->Open_DB();
+	DB->Delete_row_db(DB_name_3, "owners_id=" + (this->dataGridView1->SelectedCells[0]->RowIndex + 1));
+	DB->Delete_row_db(DB_name, "id=" + (this->dataGridView1->SelectedCells[0]->RowIndex + 1));
+	DB->Close();
 }

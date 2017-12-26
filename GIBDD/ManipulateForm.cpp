@@ -77,8 +77,8 @@ System::Void GIBDD::ManipulateForm::ManipulateForm_Load(System::Object ^ sender,
 				gibdd_db_id->Text = reader->GetValue(0)->ToString();
 				textBox1->Text = reader->GetValue(1)->ToString();
 				textBox2->Text = reader->GetValue(2)->ToString();
-				owner_db_id->Text = reader->GetValue(3)->ToString();
-				textBox3->Text = reader->GetValue(4)->ToString();
+				owner_db_id->Text = reader->GetValue(4)->ToString();
+				textBox3->Text = reader->GetValue(3)->ToString();
 				if (reader->GetValue(6)->ToString() == "0")
 				{
 					checkBox1->Checked = false;

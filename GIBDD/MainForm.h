@@ -41,6 +41,7 @@ namespace GIBDD {
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  red_btn;
+	private: System::Windows::Forms::Button^  delete_bttn;
 
 
 
@@ -64,6 +65,7 @@ namespace GIBDD {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->red_btn = (gcnew System::Windows::Forms::Button());
+			this->delete_bttn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -98,11 +100,22 @@ namespace GIBDD {
 			this->red_btn->UseVisualStyleBackColor = true;
 			this->red_btn->Click += gcnew System::EventHandler(this, &MainForm::red_btn_Click);
 			// 
+			// delete_bttn
+			// 
+			this->delete_bttn->Location = System::Drawing::Point(12, 364);
+			this->delete_bttn->Name = L"delete_bttn";
+			this->delete_bttn->Size = System::Drawing::Size(470, 21);
+			this->delete_bttn->TabIndex = 3;
+			this->delete_bttn->Text = L"Удалить запись";
+			this->delete_bttn->UseVisualStyleBackColor = true;
+			this->delete_bttn->Click += gcnew System::EventHandler(this, &MainForm::delete_bttn_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(673, 479);
+			this->Controls->Add(this->delete_bttn);
 			this->Controls->Add(this->red_btn);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
@@ -120,5 +133,6 @@ namespace GIBDD {
 	private: System::Void MainForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void red_btn_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void delete_bttn_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

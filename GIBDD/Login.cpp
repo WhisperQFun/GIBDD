@@ -57,3 +57,32 @@ System::Void GIBDD::Login::reg_bttn_Click(System::Object ^ sender, System::Event
 	RegForm^ rg = gcnew RegForm();
 	rg->ShowDialog();
 }
+
+System::Void GIBDD::Login::Login_Load(System::Object ^ sender, System::EventArgs ^ e)
+{
+	Database ^DB = gcnew Database();
+	DB->Open_DB();
+	try
+	{
+		String^ Table_Colums_Name = "id INTEGER PRIMARY KEY, type STRING, model STRING, vin STRING, owners_id INTEGER, date STRING, insearch BOOLEAN";
+		String^ Table_name = "GIBDD";
+		String^ Colums_Name_2 = "users_id INTEGER PRIMARY KEY, password STRING, login STRING, is_admin BOOLEAN";
+		String^ DB_name_2 = "USERS";
+		String^ DB_name_3 = "OWNERS";
+		String^ Colums_Name_3 = "owners_id INTEGER PRIMARY KEY, owner STRING, passport_series STRING, passport_number STRING";
+		
+		DB->Create_Table_DB(Table_name, Table_Colums_Name);
+		DB->Create_Table_DB(DB_name_2, Colums_Name_2);
+		DB->Create_Table_DB(DB_name_3, Colums_Name_3);
+	}
+	catch(Exception ^e)
+	{
+	
+	}
+	finally
+	{
+		DB->Close();
+	}
+	
+
+}
