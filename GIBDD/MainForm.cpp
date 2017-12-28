@@ -248,6 +248,7 @@ System::Void GIBDD::MainForm::delete_bttn_Click(System::Object ^ sender, System:
 	DB->Delete_row_db(DB_name_3, "owners_id=" + (this->dataGridView1->SelectedCells[0]->RowIndex + 1));
 	DB->Delete_row_db(DB_name, "id=" + (this->dataGridView1->SelectedCells[0]->RowIndex + 1));
 	DB->Close();
+	dataGridView1->DataSource = load();
 }
 
 System::Void GIBDD::MainForm::search_bttn_1_Click(System::Object ^ sender, System::EventArgs ^ e)

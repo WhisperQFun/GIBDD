@@ -11,7 +11,7 @@ int owner_id;
 
 System::Void GIBDD::ManipulateForm::add_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	if((textBox1->Text!="")&& (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != "") && (checkBox1->Checked != false))
+	if((textBox1->Text!="")&& (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != ""))
 	{
 		Database ^DB = gcnew Database();
 		DB->Open_DB();
@@ -46,7 +46,7 @@ System::Void GIBDD::ManipulateForm::add_bttn_Click(System::Object ^ sender, Syst
 
 System::Void GIBDD::ManipulateForm::edit_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	if ((textBox1->Text != "") && (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != "") && (checkBox1->Checked != false))
+	if ((textBox1->Text != "") && (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != ""))
 	{
 		Database ^DB = gcnew Database();
 		DB->Open_DB();
