@@ -36,10 +36,3 @@ public:
 };
 
 
-/*String^ Table_Colums_Name = "id INTEGER PRIMARY KEY, type STRING, model STRING, vin STRING, owners_id INTEGER, date STRING, insearch BOOLEAN";
-String^ Table_name = "GIBDD";
-String^ Colums_Name_2 = "users_id INTEGER PRIMARY KEY, password STRING, login STRING, is_admin BOOLEAN";
-String^ DB_name_2 = "USERS";
-String^ DB_name_3 = "OWNERS";
-String^ Colums_Name_3 = "owners_id INTEGER PRIMARY KEY, owner STRING, passport_series STRING, passport_number STRING";
-*/

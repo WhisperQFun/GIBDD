@@ -80,6 +80,7 @@ namespace GIBDD {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(ManipulateForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -259,7 +260,7 @@ namespace GIBDD {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(515, 479);
+			this->ClientSize = System::Drawing::Size(215, 366);
 			this->Controls->Add(this->owner_db_id);
 			this->Controls->Add(this->gibdd_db_id);
 			this->Controls->Add(this->edit_bttn);
@@ -277,8 +278,9 @@ namespace GIBDD {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"ManipulateForm";
-			this->Text = L"ManipulateForm";
+			this->Text = L"Редактирование";
 			this->Load += gcnew System::EventHandler(this, &ManipulateForm::ManipulateForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();

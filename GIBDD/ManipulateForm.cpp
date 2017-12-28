@@ -11,51 +11,65 @@ int owner_id;
 
 System::Void GIBDD::ManipulateForm::add_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	Database ^DB = gcnew Database();
-	DB->Open_DB();
-	String^ DB_name_3 = "OWNERS";
-	String^ Inserted_Values_3 = "NULL, '" + textBox4->Text + "', '" + textBox5->Text + "', '" + textBox6->Text + "'";
-	String^ DB_name = "GIBDD";
-	if (checkBox1->Checked == true)
+	if((textBox1->Text!="")&& (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != "") && (checkBox1->Checked != false))
 	{
-		i = 1;
+		Database ^DB = gcnew Database();
+		DB->Open_DB();
+		String^ DB_name_3 = "OWNERS";
+		String^ Inserted_Values_3 = "NULL, '" + textBox4->Text + "', '" + textBox5->Text + "', '" + textBox6->Text + "'";
+		String^ DB_name = "GIBDD";
+		if (checkBox1->Checked == true)
+		{
+			i = 1;
+		}
+		else
+		{
+			i = 0;
+		}
+		owner_id = DB->Insert_Table_DB(Inserted_Values_3, DB_name_3);
+		String^ Inserted_Values = "NULL, '" + textBox1->Text + "', '" + textBox2->Text + "', '" + textBox3->Text + "', " + owner_id + ", '" + DateTime::Now.ToString() + "', " + i + "";
+		//MessageBox::Show(Inserted_Values);
+		DB->Insert_Table_DB(Inserted_Values, DB_name);
+
+		DB->Close();
+		MessageBox::Show("Успешно");
+		this->Close();
 	}
 	else
 	{
-		i = 0;
+		MessageBox::Show("Заполните все поля");
 	}
-	owner_id = DB->Insert_Table_DB(Inserted_Values_3, DB_name_3);
-	String^ Inserted_Values = "NULL, '" + textBox1->Text + "', '" + textBox2->Text + "', '" + textBox3->Text + "', " + owner_id + ", '" + DateTime::Now.ToString() + "', " + i + "";
-	MessageBox::Show(Inserted_Values);
 
 
-
-
-	DB->Insert_Table_DB(Inserted_Values, DB_name);
-
-	DB->Close();
-	MessageBox::Show("Успешно");
-	this->Close();
+	
 }
 
 System::Void GIBDD::ManipulateForm::edit_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	Database ^DB = gcnew Database();
-	DB->Open_DB();
-	if (checkBox1->Checked == true)
+	if ((textBox1->Text != "") && (textBox2->Text != "") && (textBox3->Text != "") && (textBox4->Text != "") && (textBox5->Text != "") && (textBox6->Text != "") && (checkBox1->Checked != false))
 	{
-		i = 1;
+		Database ^DB = gcnew Database();
+		DB->Open_DB();
+		if (checkBox1->Checked == true)
+		{
+			i = 1;
+		}
+		else
+		{
+			i = 0;
+		}
+		DB->Update_Table_DB("GIBDD", "type='" + textBox1->Text + "'," + "model='" + textBox2->Text + "'," + "vin='" + textBox3->Text + "'," + "owners_id='" + owner_db_id->Text + "'," + "date='" + DateTime::Now.ToString() + "'," + "insearch='" + i, "' WHERE id =" + gibdd_db_id->Text);
+		DB->Update_Table_DB("OWNERS", "owner='" + textBox4->Text + "'," + "passport_series='" + textBox5->Text + "'," + "passport_number='" + textBox6->Text, "' WHERE owners_id =" + owner_db_id->Text);
+		DB->Close();
+
+		MessageBox::Show("Успешно");
+		this->Close();
 	}
 	else
 	{
-		i = 0;
+		MessageBox::Show("Заполните все поля");
 	}
-	DB->Update_Table_DB("GIBDD", "type='" + textBox1->Text + "'," + "model='" + textBox2->Text + "'," + "vin='" + textBox3->Text + "'," + "owners_id='" + owner_db_id->Text + "'," + "date='" + DateTime::Now.ToString() + "'," + "insearch='" + i, "' WHERE id =" + gibdd_db_id->Text);
-	DB->Update_Table_DB("OWNERS", "owner='" + textBox4->Text + "'," + "passport_series='" + textBox5->Text + "'," + "passport_number='" + textBox6->Text, "' WHERE owners_id =" + owner_db_id->Text);
-	DB->Close();
 
-	MessageBox::Show("Успешно");
-	this->Close();
 }
 
 System::Void GIBDD::ManipulateForm::ManipulateForm_Load(System::Object ^ sender, System::EventArgs ^ e)
