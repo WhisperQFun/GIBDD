@@ -10,13 +10,13 @@ using namespace GIBDD;
 
 
 
+
 DataTable^ load()
 {
 	using namespace System::Collections::Generic;
 	List<Data_gibdd^>^ Data1 = gcnew List<Data_gibdd^>;
 	List<Data_users^>^ Data2 = gcnew List<Data_users^>;
 	List<Data_owners^>^ Data3 = gcnew List<Data_owners^>;
-
 	String^ Table_name = "GIBDD";
 	String^ DB_name_2 = "USERS";
 	String^ DB_name_3 = "OWNERS";
@@ -254,4 +254,32 @@ System::Void GIBDD::MainForm::delete_bttn_Click(System::Object ^ sender, System:
 System::Void GIBDD::MainForm::search_bttn_1_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	dataGridView1->DataSource = load(textBox1->Text,0);
+}
+
+System::Void GIBDD::MainForm::report_bttn_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	try
+	{
+		using namespace System::IO;
+		StreamWriter^ writer = gcnew StreamWriter(Application::StartupPath + "\\report.txt");
+		writer->WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////////");
+		writer->WriteLine("Отчет по ТС под номером:" + this->dataGridView1->SelectedCells[0]->Value);
+		writer->WriteLine("Тип машины:" + this->dataGridView1->SelectedCells[1]->Value);
+		writer->WriteLine("Модель:" + this->dataGridView1->SelectedCells[2]->Value);
+		writer->WriteLine("VIN:" + this->dataGridView1->SelectedCells[3]->Value);
+		writer->WriteLine("№Владельца:" + this->dataGridView1->SelectedCells[4]->Value);
+		writer->WriteLine("Имя и фамилия:" + this->dataGridView1->SelectedCells[5]->Value);
+		writer->WriteLine("Серия паспорта:" + this->dataGridView1->SelectedCells[6]->Value);
+		writer->WriteLine("Номер паспорта:" + this->dataGridView1->SelectedCells[7]->Value);
+		writer->WriteLine("Дата:" + this->dataGridView1->SelectedCells[8]->Value);
+		writer->WriteLine("В розыске ?:" + this->dataGridView1->SelectedCells[9]->Value);
+		writer->WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////////");
+		writer->Close();
+		MessageBox::Show("Успешно");
+	}
+	catch(Exception^ e)
+	{
+		MessageBox::Show("Выделите строку");
+	}
+	
 }

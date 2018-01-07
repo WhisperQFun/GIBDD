@@ -9,6 +9,7 @@ namespace GIBDD {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Threading;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Сводка для MainForm
@@ -16,8 +17,9 @@ namespace GIBDD {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
-		String ^ is_adm;
+		String ^ is_adm;		
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Button^  report_bttn;
 	public:
 		String ^ user_id;
 		MainForm(String^ usr_id, String^ is_admin1)
@@ -75,6 +77,7 @@ namespace GIBDD {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->search_bttn_1 = (gcnew System::Windows::Forms::Button());
+			this->report_bttn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -147,11 +150,22 @@ namespace GIBDD {
 			this->search_bttn_1->UseVisualStyleBackColor = true;
 			this->search_bttn_1->Click += gcnew System::EventHandler(this, &MainForm::search_bttn_1_Click);
 			// 
+			// report_bttn
+			// 
+			this->report_bttn->Location = System::Drawing::Point(488, 335);
+			this->report_bttn->Name = L"report_bttn";
+			this->report_bttn->Size = System::Drawing::Size(157, 23);
+			this->report_bttn->TabIndex = 7;
+			this->report_bttn->Text = L"Сделать отчет";
+			this->report_bttn->UseVisualStyleBackColor = true;
+			this->report_bttn->Click += gcnew System::EventHandler(this, &MainForm::report_bttn_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(766, 393);
+			this->ClientSize = System::Drawing::Size(683, 393);
+			this->Controls->Add(this->report_bttn);
 			this->Controls->Add(this->search_bttn_1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
@@ -176,5 +190,6 @@ namespace GIBDD {
 	private: System::Void red_btn_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void delete_bttn_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void search_bttn_1_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void report_bttn_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }
